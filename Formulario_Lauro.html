@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario Lauro</title>
+
+    <style type="text/css">
+    
+    *{ margin: 0; padding: 0;}
+
+  main {
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+   }
+
+   body{
+      margin: 0px;
+    background-color: rgb(2, 79, 146);
+
+    }
+    form{
+       background-color: rgb(3, 99, 143);
+       border-radius: 10px;
+       width: 250px;
+       height: 274px;
+    }
+    label{
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 18px;
+        color: rgb(65, 4, 29);
+        font-weight: bold;
+        margin: 0px 0px 0px 5px;
+        padding: 20px;
+    }
+
+    .label__resultado{
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 30px; 
+    }
+
+    input{
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 18px;
+        color: rgb(190, 10, 85);
+        border-radius: 9px;
+        border-color: rgb(2, 79, 146);
+        width: 220px;
+        height: 20px;
+        margin: 0px 0px 0px 10px;
+        padding: 4px;
+    }
+    input:hover{
+        border-color: rgb(247, 247, 247);
+        background-color: rgb(247, 247, 247);
+    }
+    .input__resultado{
+        border: 0px;
+        background-color: rgb(3, 99, 143);
+        text-align: center;
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 30px;
+        color: rgb(255, 255, 255);
+    }
+    .input__resultado:hover{
+        background-color: rgb(3, 99, 143);
+    }
+
+    button{
+        background-color: rgba(65, 4, 29, 0.747);
+        color: rgb(255, 255, 255);
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 18px;
+        width: 100px;
+        height: 50px;
+        border-radius: 9px;
+        margin: 8px 8px 8px 13px;
+    }
+    p{
+        font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 15px;
+        font-weight: bold;
+        margin: 0px 0px 0px 5px;
+        color: rgb(255, 255, 255);
+
+   }
+    </style>
+
+</head>
+<body>
+<main>
+
+<main>
+<form action="" id="formulario" name="formulario">
+    <div>
+        <label for="valor_1">Primeiro valor:</label>
+        <p id="vali_1"></p>
+        <input type="text" id="valor_1" name="valor_1" value="" 
+        placeholder="Digite um número" min="1" minlength="1" onfocus="validarCampo_2_ComFoco()" onblur="validarCampo_1_SemFoco()">
+    </div>
+    <div>
+        <label for="valor_2">Segundo valor:</label>
+        <p id="vali_2"></p>
+        <input type="text" id="valor_2" name="valor_2" value="" 
+        placeholder="Digite um número" min="1" minlength="1" required onfocus="validarCampo_2_ComFoco()" onblur="validarCampo_2_SemFoco()">
+    </div>
+    <div>
+        <label class="label__resultado" for="Resultado">=</label>
+        <input class="input__resultado" type="text" name="resultado" /> 
+        <p id="vali_3"></p>
+    </div>
+    <div class="button">
+        <button type="button" id="botao" onclick="Soma()">Somar</button> <button type="reset" onclick="Limpar()">Limpar</button>
+    </div>
+</form>
+</main>
+<script>   
+
+    document.getElementById("valor_1").onblur = function() {validarCampo_1_SemFoco()};
+    document.getElementById("valor_1").onfocus = function() {validarCampo_1_ComFoco()};
+    
+    document.getElementById("valor_2").onblur = function() {validarCampo_2_SemFoco()};
+    document.getElementById("valor_2").onfocus = function() {validarCampo_2_ComFoco()};
+       
+    function validarCampo_1_SemFoco(){
+     var valor_1 = formulario.valor_1;
+     // Se valor 1 vazio exiba a menssagem
+       if(valor_1.value == ""){
+        document.getElementById("vali_1").innerHTML = "Este campo não pode estar vazio";
+        document.getElementById("valor_1").style.background = "DarkSalmon";
+        // Se valor 1 < 0 exiba a menssagem
+         } else if(valor_1.value < 0){
+        document.getElementById("vali_1").innerHTML = "O valor deste campo não pode ser menor que zero";
+        document.getElementById("valor_1").style.background = "DarkSalmon";
+         }}
+
+    function validarCampo_1_ComFoco(){
+        document.getElementById("vali_1").innerHTML = "";
+    }
+
+    function validarCampo_2_SemFoco(){
+     var valor_2 = formulario.valor_2;
+     // Se valor 2 vazio exiba a menssagem
+       if(valor_2.value == ""){
+        document.getElementById("vali_2").innerHTML = "Este campo não pode estar vazio";
+        document.getElementById("valor_2").style.background = "DarkSalmon";
+        // Se valor 2 < 0 exiba a menssagem
+         } else if(valor_2.value < 0){
+        document.getElementById("vali_2").innerHTML = "O valor deste campo não pode ser menor que zero";
+        document.getElementById("valor_2").style.background = "DarkSalmon";
+         }}
+
+    function validarCampo_2_ComFoco(){
+        document.getElementById("vali_2").innerHTML = "";
+    }
+
+    // Funcao Soma
+    function Soma(){
+    var valor_1 = parseInt(document.getElementById("valor_1").value);
+    var valor_2 = parseInt(document.getElementById("valor_2").value);
+    
+    // Se soma não atende aos requisitos abaixo
+    if(valor_1 > 0 && valor_1 != "" && valor_2 > 0 && valor_2 != "" ){
+        var soma = valor_2 + valor_1;
+        formulario.resultado.value = soma;
+    // Mostre a menssagem e chame as funcoes validarCampo
+    }else {
+        document.getElementById("vali_3").innerHTML = "Não foi possive realizar a soma";
+        validarCampo_1_SemFoco();
+        validarCampo_2_SemFoco();
+    }}
+
+    // Removendo menssagens de Alerta
+    function Limpar(){
+        document.getElementById("vali_3").innerHTML = "";
+        document.getElementById("vali_1").innerHTML = "";
+        document.getElementById("vali_2").innerHTML = "";
+        document.getElementById("valor_1").style.background = "white";
+        document.getElementById("valor_2").style.background = "white";
+    }
+    </script>
+
+</body>
+</html>
